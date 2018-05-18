@@ -1,0 +1,26 @@
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-3">
+		<%= image_tag @book.book_img.url(:book_show), class:"book_show" %>
+		</div>
+
+		<div class="col-md-9">
+			<p class="h2 text-primary"><%= @book.title %></p>	
+			<p class="h2 text-danger"><%= @book.author %></p>
+			<p class="h2 text-danger">Category: <%= @book.category.name %></p>
+			<p class="h3 text-secondry"><%= @book.description %></p>
+
+			<%= link_to "Back", root_path %>
+		   <% if user_signed_in? %>
+		   		<% if @book.user_id == current_user.id %>
+					<%= link_to "Edit", edit_book_path(@book) %>
+					<%= link_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you want to delete?"} %> 
+				<% end %>
+			<% end %>
+		</div>
+		
+	</div>
+</div>
+
